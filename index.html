@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Clicker</title>
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height,
+    user-scalable=no, initial-scale=1, maximum-scale=1"
+    />
+    <script src="https://unpkg.com/sounds-some-sounds@3.0.0/build/index.js"></script>
+    <script src="https://unpkg.com/gif-capture-canvas@1.1.0/build/index.js"></script>
+    <script src="https://unpkg.com/pixi.js@5.3.0/dist/pixi.min.js"></script>
+    <script src="https://unpkg.com/pixi-filters@3.1.1/dist/pixi-filters.js"></script>
+    <script src="https://unpkg.com/crisp-game-lib@1.1.1/docs/bundle.js"></script>
+
+<script>
+title = "Speed Clicker";
+
+description = ` 
+Click As Fast As You Can In 15 Seconds
+`;
+
+characters = [
+`
+
+`
+];
+
+const screenSize = {
+	WIDTH: 300,
+	HEIGHT: 300,
+};
+
+options = {
+  viewSize: {x: screenSize.WIDTH, y: screenSize.HEIGHT},
+  theme: "shapeDark",
+};
+
+blue = {
+    pos: vec(screenSize.WIDTH * 0.5, screenSize.HEIGHT * 0.3)
+};
+
+let timer = true;
+let time = 750; // should be 15 seconds
+
+
+function update() 
+{
+    if (!ticks) 
+    {
+      color("blue");
+      particle(
+        blue.pos.x,
+        blue.pos.y,
+        4,
+        1,
+        -PI/2,
+        PI/4
+      );
+  }
+
+  time -= 1;
+  console.log(time);
+
+  if(timer == true && input.isJustPressed)
+  {
+    color("blue");
+    addScore(5);
+  }
+
+  if(time == 0)
+  {
+    timer = false;
+    end();
+    time = 750;
+    timer = true;
+  }
+
+  if(input.isJustPressed && timer == true)
+  {
+    color("blue");
+  }
+  
+}
+
+addEventListener("load", onLoad);
+</script>
+
+  </head>
+  <body style="background: #57ebd2"></body>
+</html>
